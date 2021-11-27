@@ -1,0 +1,22 @@
+<h2>{{ object.title }}</h2>
+
+<p>
+    <!-- get_previous 함수는 이전 포스트 객체의 문자열 텍스트를 출력합니다.
+        &laquo;는 HTML 특수문자 << 를 의미합니다. -->
+    {% if object.get_previous %}
+    <a href="{{ object.get_previous.get_absolute_url }}" title="View previous post">&laquo;-- {{ object.get_previous }}</a>
+    {% endif %}
+
+    {% if object.get_next %}
+    <a href="{{ object.get_next.get_absolute_url }}" title="View next post">{{ object.get_next }} --&raquo;</a>
+    {% endif %}
+</p>
+
+<p>{{ object.modify_dt|date:"j F Y"}}</p>
+<br>
+
+<div>
+    <!-- 포스트 객체의 content 속성값을 출력합니다. 
+        linebreaks 탬플릿 필터는 \n 개행을 인식합니다. -->
+    {{ object.content|linebreaks }}
+</div>
